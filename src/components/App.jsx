@@ -7,6 +7,14 @@ import Filter from '../components/Filter/Filter';
 
 import css from '../components/App.module.css';
 
+const contactsState = [
+  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+];
+const KEY = 'contacts';
+
 const useLocalStorage = (key, initialValue) => {
   const [state, setState] = useState(() => {
     return JSON.parse(localStorage.getItem(key)) ?? initialValue;
@@ -19,16 +27,8 @@ const useLocalStorage = (key, initialValue) => {
   return [state, setState];
 };
 
-const contactsState = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
-const key = 'contacts';
-
 const App = () => {
-  const [contacts, setContacts] = useLocalStorage(key, contactsState);
+  const [contacts, setContacts] = useLocalStorage(KEY, contactsState);
   const [filters, setFilters] = useState('');
 
   const addContact = (name, number) => {
@@ -60,7 +60,6 @@ const App = () => {
     });
   };
 
-
   const handleChange = event => {
     setFilters(event.target.value);
   };
@@ -76,7 +75,7 @@ const App = () => {
         {contacts.length !== 0 && (
           <ContactList
             deleteContacts={deleteContact}
-            filterContacts={getFilteredContacts() }
+            filterContacts={getFilteredContacts()}
           />
         )}
       </div>
