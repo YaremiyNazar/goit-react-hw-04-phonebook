@@ -1,6 +1,4 @@
 
-
-
 import PropTypes from 'prop-types';
 import ContactItem from '../ContactItem/ContactItem';
 import css from "../ContactList/ContactList.module.css"
