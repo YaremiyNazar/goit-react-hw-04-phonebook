@@ -5,6 +5,8 @@ import ContactList from '../components/ContactList/ContactList';
 import ContactForm from '../components/ContactForm/ContactForm';
 import Filter from '../components/Filter/Filter';
 
+import useLocalStorage from 'hooks/localStorage';
+
 import css from '../components/App.module.css';
 
 const contactsState = [
@@ -14,18 +16,6 @@ const contactsState = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 const KEY = 'contacts';
-
-const useLocalStorage = (key, initialValue) => {
-  const [state, setState] = useState(() => {
-    return JSON.parse(localStorage.getItem(key)) ?? initialValue;
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
-  }, [state, key]);
-
-  return [state, setState];
-};
 
 const App = () => {
   const [contacts, setContacts] = useLocalStorage(KEY, contactsState);
